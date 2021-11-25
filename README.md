@@ -14,5 +14,8 @@ find . -name "*.jpg" -exec sh -c 'convert {} -alpha on \( +clone -threshold -1 -
 # Drop shadow
 find . -name "*.png.png" -exec sh -c 'convert {} \( +clone -background black -shadow 60x5+10+10 \) +swap -background white -layers merge +repage ${1%}.jpg' sh {} \;
 
+# Avatar
+find . -name "*.png" -exec sh -c 'convert {} -background "#333333" -gravity center -extent 425x425 ${1%}-avatar.png' sh {} \;
+
 convert <file>.jpg \( +clone -background black -shadow 60x5+10+10 \) +swap -background white -layers merge +repage <output>.jpg
 ```
